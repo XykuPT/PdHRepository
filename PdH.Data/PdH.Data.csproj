@@ -48,7 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Repositories\ProductRepository.cs" />
+    <Compile Include="Components\Repositories\SalesRepository.cs" />
     <Compile Include="Context\Mappings\ProductMapping.cs" />
+    <Compile Include="Context\Mappings\SaleDetailsMappings.cs" />
+    <Compile Include="Context\Mappings\SalesMappings.cs" />
     <Compile Include="Context\PdHContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

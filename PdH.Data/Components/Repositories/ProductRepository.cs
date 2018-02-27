@@ -29,14 +29,62 @@ namespace PdH.Data.Components.Repositories
             return dbSet.FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Product> Search(string name)//falta aqui parametros para um advanced search
+
+
+
+        public Product GetByCode(string code)
         {
-            //TODO: this teste
-            throw new NotImplementedException();
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
+
+            return dbSet.FirstOrDefault(p => p.Code == code);
         }
 
+        public IEnumerable<Product> Search(
+            int pageNumber,
+            int pageSize,
+            string code = null,
+            string name = null,
+            string color = null,
+            string size = null,
+            string category = null,
+            bool? active = null)
+        {
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
 
-        //TODO: count para fazer paginação
+            return dbSet.Where(p =>
+                    (code == null || p.Code.Contains(code))
+                    && (name == null || p.Name.Contains(name))
+                    && (color == null || p.Color.Contains(color))
+                    && (size == null || p.Size.Contains(size))
+                    && (category == null || p.Category.Contains(category))
+                    && (!active.HasValue || p.IsActive == active))
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public long Count(
+            string code = null,
+            string name = null,
+            string color = null,
+            string size = null,
+            string category = null,
+            bool? active = null)
+        {
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
+
+            return dbSet.LongCount(p =>
+                  (code == null || p.Code.Contains(code))
+                    && (name == null || p.Name.Contains(name))
+                    && (color == null || p.Color.Contains(color))
+                    && (size == null || p.Size.Contains(size))
+                    && (category == null || p.Category.Contains(category))
+                    && (!active.HasValue || p.IsActive == active));
+        }
 
         public void Delete(Product product)
         {
