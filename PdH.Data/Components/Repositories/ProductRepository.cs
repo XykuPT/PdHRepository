@@ -32,9 +32,18 @@ namespace PdH.Data.Components.Repositories
             throw new NotImplementedException();
         }
 
+
+        //TODO: count para fazer paginação
+
         public void Delete(Product product)
         {
-            var dbContext
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
+
+            dbSet.Attach(product);
+            dbSet.Remove(product);
+
+            dbContext.SaveChanges();
         }
     }
 }
