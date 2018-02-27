@@ -20,11 +20,13 @@ namespace PdH.Data.Components.Repositories
         
         public Product Get(long id)
         {
-            //TODO: this
-            throw new NotImplementedException();
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
+
+            return dbSet.FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Product> Search(string name)
+        public IEnumerable<Product> Search(string name)//falta aqui parametros para um advanced search
         {
             //TODO: this
             throw new NotImplementedException();
@@ -32,8 +34,7 @@ namespace PdH.Data.Components.Repositories
 
         public void Delete(Product product)
         {
-            //TODO: this
-            throw new NotImplementedException();
+            var dbContext
         }
     }
 }
