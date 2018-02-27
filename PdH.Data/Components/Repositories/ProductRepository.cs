@@ -15,7 +15,10 @@ namespace PdH.Data.Components.Repositories
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<Product>();
 
-            return dbSet.Add(product);
+            dbSet.Add(product);
+            dbContext.SaveChanges();
+
+            return product;
         }
         
         public Product Get(long id)

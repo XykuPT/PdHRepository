@@ -11,27 +11,33 @@ namespace PdH.Business
 {
     public class ProductBc : IProductBc
     {
-        private ProductRepository _productRrepository;
+        private ProductRepository _productRepository;
 
         public ProductBc()
         {
-            _productRrepository = new ProductRepository();
+            _productRepository = new ProductRepository();
 
         }
 
         public Product Add(Product product)
         {
-            throw new NotImplementedException();
+            return _productRepository.Add(product);
         }
 
         public void Delete(Product product)
         {
-            throw new NotImplementedException();
+            var dbProduct = _productRepository.Get(product.Id);
+            if (dbProduct == null)
+            {
+                throw new Exception("O produto que pretende apagar não existe");
+            }
+
+            _productRepository.Delete(dbProduct);
         }
 
         public Product Get(long id)
         {
-            return _productRrepository.Get(id);
+            return _productRepository.Get(id);
         }
 
         public IEnumerable<Product> Search(string name)
