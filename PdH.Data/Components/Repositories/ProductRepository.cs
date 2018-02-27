@@ -28,7 +28,7 @@ namespace PdH.Data.Components.Repositories
 
         public IEnumerable<Product> Search(string name)//falta aqui parametros para um advanced search
         {
-            //TODO: this
+            //TODO: this teste
             throw new NotImplementedException();
         }
 
