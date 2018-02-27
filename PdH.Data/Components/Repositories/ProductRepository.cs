@@ -29,14 +29,6 @@ namespace PdH.Data.Components.Repositories
             return dbSet.FirstOrDefault(p => p.Id == id);
         }
 
-        public Product GetByCode(string code)
-        {
-            var dbContext = new PdHContext();
-            var dbSet = dbContext.Set<Product>();
-
-            return dbSet.FirstOrDefault(p => p.Code == code);
-        }
-
         public IEnumerable<Product> Search(string name)//falta aqui parametros para um advanced search
         {
             //TODO: this teste
