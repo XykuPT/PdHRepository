@@ -20,11 +20,21 @@ namespace PdH.Business
 
         public Sales Add(Sales sales)
         {
+            var dbSales = _salesRepository.Get(sales.Id);
+            if(dbSales != null)
+            {
+                throw new Exception("Já existe uma venda com este ID.");
+            }
             return _salesRepository.Add(sales);
         }
 
         public Sales Get(long id)
         {
+            var dbSales = _salesRepository.Get(id);
+            if(dbSales == null)
+            {
+                throw new Exception("Não existe venda com esse ID.")
+            }
             return _salesRepository.Get(id);
         }
 

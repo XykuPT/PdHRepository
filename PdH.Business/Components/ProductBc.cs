@@ -16,7 +16,6 @@ namespace PdH.Business
         public ProductBc()
         {
             _productRepository = new ProductRepository();
-
         }
 
         public Product Add(Product product)
@@ -26,10 +25,7 @@ namespace PdH.Business
             {
                 throw new Exception("Já existe um Produto com esse Código.");
             }
-            else
-            {
-                return _productRepository.Add(product);
-            }
+            return _productRepository.Add(product);
         }
 
         public Product Get(long id)
@@ -39,11 +35,7 @@ namespace PdH.Business
             {
                 throw new Exception("Não existe produto com esse ID.");
             }
-            else
-            {
-                return _productRepository.Get(id);
-            }
-            
+            return _productRepository.Get(id);
         }
 
         public Product GetByCode(string code)
@@ -53,11 +45,7 @@ namespace PdH.Business
             {
                 throw new Exception("Não existe produto com esse Code.");
             }
-            else
-            {
             return _productRepository.GetByCode(code);
-            }
-
         }
 
         public IEnumerable<Product> Search(
@@ -94,11 +82,7 @@ namespace PdH.Business
             {
                 throw new Exception("O produto que pretende apagar não existe");
             }
-            else
-            {
             _productRepository.Delete(dbProduct);
-            }
-
         }
     }
 }
