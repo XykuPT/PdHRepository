@@ -39,6 +39,7 @@ namespace PdH.Data.Components.Repositories
             int pageSize,
             string code = null,
             string name = null,
+            string material = null,
             string color = null,
             string size = null,
             string category = null,
@@ -50,6 +51,7 @@ namespace PdH.Data.Components.Repositories
             return dbSet.Where(p =>
                     (code == null || p.Code.Contains(code))
                     && (name == null || p.Name.Contains(name))
+                    && (material == null || p.Material.Contains(material))
                     && (color == null || p.Color.Contains(color))
                     && (size == null || p.Size.Contains(size))
                     && (category == null || p.Category.Contains(category))
@@ -63,6 +65,7 @@ namespace PdH.Data.Components.Repositories
         public long Count(
             string code = null,
             string name = null,
+            string material = null,
             string color = null,
             string size = null,
             string category = null,
@@ -74,6 +77,7 @@ namespace PdH.Data.Components.Repositories
             return dbSet.LongCount(p =>
                   (code == null || p.Code.Contains(code))
                     && (name == null || p.Name.Contains(name))
+                    && (material == null || p.Material.Contains(material))
                     && (color == null || p.Color.Contains(color))
                     && (size == null || p.Size.Contains(size))
                     && (category == null || p.Category.Contains(category))

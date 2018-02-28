@@ -21,7 +21,13 @@ namespace PdH.Business
 
         public Product Add(Product product)
         {
-            return _productRepository.Add(product);
+            var dbProduct = _productRepository.GetByCode(product.Code);
+            if(dbProduct != null)
+            {
+                throw new Exception("Já existe um Produto com esse Código.");
+            }else { 
+                return _productRepository.Add(product);
+            }
         }
 
         public Product Get(long id)
@@ -38,24 +44,26 @@ namespace PdH.Business
             int pageNumber, 
             int pageSize, 
             string code, 
-            string name, 
+            string name,
+            string material,
             string color, 
             string size, 
             string category, 
             bool? active)
         {
-            return _productRepository.Search(pageNumber, pageSize, code, name, color, size, category, active);
+            return _productRepository.Search(pageNumber, pageSize, code, name, material, color, size, category, active);
         }
 
         public long Count(
             string code, 
-            string name, 
+            string name,
+            string material,
             string color, 
             string size, 
             string category, 
             bool? active)
         {
-            return _productRepository.Count(code, name, color, size, category, active);
+            return _productRepository.Count(code, name, material, color, size, category, active);
         }
 
 

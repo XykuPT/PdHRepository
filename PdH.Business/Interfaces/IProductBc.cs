@@ -16,6 +16,7 @@ namespace PdH.Business.Interfaces
             int pageSize,
             string code, 
             string name,
+            string material,
             string color,
             string size,
             string category,
@@ -24,6 +25,7 @@ namespace PdH.Business.Interfaces
         long Count(
             string code,
             string name,
+            string material,
             string color,
             string size,
             string category,
