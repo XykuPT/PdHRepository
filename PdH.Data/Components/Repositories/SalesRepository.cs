@@ -3,8 +3,6 @@ using PdH.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PdH.Data.Components.Repositories
 {
@@ -27,6 +25,20 @@ namespace PdH.Data.Components.Repositories
             var dbSet = dbContext.Set<Sales>();
 
             return dbSet.FirstOrDefault(s => s.Id == id);
+        }
+
+        public IEnumerable<Sales> Search(
+            int pageNumber,
+            int pageSize,
+            string productCode = null,
+            long? costumerKey = null,
+            DateTime? saleDate = null)
+        {
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Sales>();
+
+            return dbSet.Include(p => p.Product)
+                .Where()
         }
     }
 }

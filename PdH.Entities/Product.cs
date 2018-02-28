@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PdH.Entities
 {
@@ -29,6 +30,7 @@ namespace PdH.Entities
         //SCALAR PROPERTIES
 
         //NAVIGATION PROPERTIES
+        public virtual ICollection<Sales> Sales { get; set; }
         //NAVIGATION PROPERTIES
     }
 }

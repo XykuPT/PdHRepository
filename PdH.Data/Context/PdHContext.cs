@@ -16,6 +16,8 @@ namespace PdH.Data.Context.Mappings
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new ProductMapping());
+            modelBuilder.Configurations.Add(new SalesMappings());
+            modelBuilder.Configurations.Add(new SaleDetailsMappings());
         }
     }
 }

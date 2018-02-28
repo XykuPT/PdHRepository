@@ -1,10 +1,7 @@
-﻿using PdH.Data.Context.Mappings;
-using PdH.Entities;
-using System;
+﻿using PdH.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PdH.Data.Context.Mappings;
 
 namespace PdH.Data.Components.Repositories
 {
