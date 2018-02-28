@@ -21,8 +21,71 @@ namespace PdH.Business
 
         public Product Add(Product product)
         {
-            return _productRepository.Add(product);
+            var dbProduct = _productRepository.GetByCode(product.Code);
+            if(dbProduct != null)
+            {
+                throw new Exception("Já existe um Produto com esse Código.");
+            }
+            else
+            {
+                return _productRepository.Add(product);
+            }
         }
+
+        public Product Get(long id)
+        {
+            var dbProduct = _productRepository.Get(id);
+            if(dbProduct == null)
+            {
+                throw new Exception("Não existe produto com esse ID.");
+            }
+            else
+            {
+                return _productRepository.Get(id);
+            }
+            
+        }
+
+        public Product GetByCode(string code)
+        {
+            var dbProduct = _productRepository.GetByCode(code);
+            if(dbProduct == null)
+            {
+                throw new Exception("Não existe produto com esse Code.");
+            }
+            else
+            {
+            return _productRepository.GetByCode(code);
+            }
+
+        }
+
+        public IEnumerable<Product> Search(
+            int pageNumber, 
+            int pageSize, 
+            string code, 
+            string name,
+            string material,
+            string color, 
+            string size, 
+            string category, 
+            bool? active)
+        {
+            return _productRepository.Search(pageNumber, pageSize, code, name, material, color, size, category, active);
+        }
+
+        public long Count(
+            string code, 
+            string name,
+            string material,
+            string color, 
+            string size, 
+            string category, 
+            bool? active)
+        {
+            return _productRepository.Count(code, name, material, color, size, category, active);
+        }
+
 
         public void Delete(Product product)
         {
@@ -31,18 +94,11 @@ namespace PdH.Business
             {
                 throw new Exception("O produto que pretende apagar não existe");
             }
-
+            else
+            {
             _productRepository.Delete(dbProduct);
-        }
+            }
 
-        public Product Get(long id)
-        {
-            return _productRepository.Get(id);
-        }
-
-        public IEnumerable<Product> Search(string name)
-        {
-            throw new NotImplementedException();
         }
     }
 }

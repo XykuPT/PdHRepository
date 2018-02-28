@@ -17,6 +17,7 @@ namespace PdH.Data.Context.Mappings
 
             Property(p => p.Code).HasColumnName("Code").HasColumnType("varchar").IsOptional().HasMaxLength(15);
             Property(p => p.Name).HasColumnName("Name").HasColumnType("nvarchar").IsOptional().HasMaxLength(512);
+            Property(p => p.Material).HasColumnName("material").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
             Property(p => p.Color).HasColumnName("Color").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
             Property(p => p.Size).HasColumnName("Size").HasColumnType("nvarchar").IsOptional().HasMaxLength(20);
             Property(p => p.Category).HasColumnName("Category").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);

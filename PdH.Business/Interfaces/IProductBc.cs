@@ -9,7 +9,27 @@ namespace PdH.Business.Interfaces
 
         Product Get(long id);
 
-        IEnumerable<Product> Search(string name);
+        Product GetByCode(string code);
+
+        IEnumerable<Product> Search(
+            int pageNumber,
+            int pageSize,
+            string code, 
+            string name,
+            string material,
+            string color,
+            string size,
+            string category,
+            bool? active);
+
+        long Count(
+            string code,
+            string name,
+            string material,
+            string color,
+            string size,
+            string category,
+            bool? active);
 
         void Delete(Product product);
 
