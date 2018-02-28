@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\ProductBc.cs" />
+    <Compile Include="Components\SalesBc.cs" />
     <Compile Include="Interfaces\IProductBc.cs" />
+    <Compile Include="Interfaces\ISalesBc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

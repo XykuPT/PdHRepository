@@ -26,9 +26,6 @@ namespace PdH.Data.Components.Repositories
             return dbSet.FirstOrDefault(p => p.Id == id);
         }
 
-
-
-
         public Product GetByCode(string code)
         {
             var dbContext = new PdHContext();

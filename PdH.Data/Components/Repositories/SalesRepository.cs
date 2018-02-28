@@ -2,6 +2,7 @@
 using PdH.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace PdH.Data.Components.Repositories
@@ -31,14 +32,32 @@ namespace PdH.Data.Components.Repositories
             int pageNumber,
             int pageSize,
             string productCode = null,
-            long? costumerKey = null,
+            long? customerKey = null,
             DateTime? saleDate = null)
         {
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<Sales>();
 
             return dbSet.Include(p => p.Product)
-                .Where()
+                .Where(s =>
+                (productCode == null || s.Product.Code.Contains(productCode)) &&
+                (customerKey == null || s.CustomerKey == customerKey) && 
+                (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)))
+                .OrderBy(s => s.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public long Count(string productCode, long? customerKey, DateTime? saleDate)
+        {
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Sales>();
+
+            return dbSet.LongCount(s =>
+                (productCode == null || s.Product.Code.Contains(productCode)) &&
+                (customerKey == null || s.CustomerKey == customerKey) &&
+                (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)));
         }
     }
 }

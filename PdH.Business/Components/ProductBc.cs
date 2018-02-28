@@ -24,6 +24,41 @@ namespace PdH.Business
             return _productRepository.Add(product);
         }
 
+        public Product Get(long id)
+        {
+            return _productRepository.Get(id);
+        }
+
+        public Product GetByCode(string code)
+        {
+            return _productRepository.GetByCode(code);
+        }
+
+        public IEnumerable<Product> Search(
+            int pageNumber, 
+            int pageSize, 
+            string code, 
+            string name, 
+            string color, 
+            string size, 
+            string category, 
+            bool? active)
+        {
+            return _productRepository.Search(pageNumber, pageSize, code, name, color, size, category, active);
+        }
+
+        public long Count(
+            string code, 
+            string name, 
+            string color, 
+            string size, 
+            string category, 
+            bool? active)
+        {
+            return _productRepository.Count(code, name, color, size, category, active);
+        }
+
+
         public void Delete(Product product)
         {
             var dbProduct = _productRepository.Get(product.Id);
@@ -33,16 +68,6 @@ namespace PdH.Business
             }
 
             _productRepository.Delete(dbProduct);
-        }
-
-        public Product Get(long id)
-        {
-            return _productRepository.Get(id);
-        }
-
-        public IEnumerable<Product> Search(string name)
-        {
-            throw new NotImplementedException();
         }
     }
 }
