@@ -31,8 +31,9 @@ namespace PdH.Tests
                 {
                    
                     Name = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
-                    Color = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
-                    Size = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
+                    Code = $"RandomCode{TestUtils.GetRandomGuidAsString(5)}",
+                    Color = $"RandomColor{TestUtils.GetRandomGuidAsString(5)}",
+                    Size = $"RandomSize{TestUtils.GetRandomGuidAsString(5)}",
                     CreatedBy = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
                     CreatedOn = DateTime.Now,
 
@@ -57,8 +58,9 @@ namespace PdH.Tests
             {
                 Id = TestUtils.GetRandomNumeric(9999),
                 Name = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
-                Color = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
-                Size = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
+                Code = $"RandomCode{TestUtils.GetRandomGuidAsString(5)}",
+                Color = $"RandomColor{TestUtils.GetRandomGuidAsString(5)}",
+                Size = $"RandomSize{TestUtils.GetRandomGuidAsString(5)}",
                 CreatedBy = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
                 CreatedOn = DateTime.Now,
 
@@ -109,7 +111,6 @@ namespace PdH.Tests
 
             Assert.IsTrue(createdProduct.Id != 0);
             Assert.IsNull(deletedProduct);        }
-
 
     }
 }

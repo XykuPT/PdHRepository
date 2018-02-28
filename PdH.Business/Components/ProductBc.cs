@@ -25,19 +25,39 @@ namespace PdH.Business
             if(dbProduct != null)
             {
                 throw new Exception("Já existe um Produto com esse Código.");
-            }else { 
+            }
+            else
+            {
                 return _productRepository.Add(product);
             }
         }
 
         public Product Get(long id)
         {
-            return _productRepository.Get(id);
+            var dbProduct = _productRepository.Get(id);
+            if(dbProduct == null)
+            {
+                throw new Exception("Não existe produto com esse ID.");
+            }
+            else
+            {
+                return _productRepository.Get(id);
+            }
+            
         }
 
         public Product GetByCode(string code)
         {
+            var dbProduct = _productRepository.GetByCode(code);
+            if(dbProduct == null)
+            {
+                throw new Exception("Não existe produto com esse Code.");
+            }
+            else
+            {
             return _productRepository.GetByCode(code);
+            }
+
         }
 
         public IEnumerable<Product> Search(
@@ -74,8 +94,11 @@ namespace PdH.Business
             {
                 throw new Exception("O produto que pretende apagar não existe");
             }
-
+            else
+            {
             _productRepository.Delete(dbProduct);
+            }
+
         }
     }
 }
