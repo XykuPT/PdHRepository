@@ -33,7 +33,7 @@ namespace PdH.Business
             var dbSales = _salesRepository.Get(id);
             if(dbSales == null)
             {
-                throw new Exception("Não existe venda com esse ID.")
+                throw new Exception("Não existe venda com esse ID.");
             }
             return _salesRepository.Get(id);
         }
