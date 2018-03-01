@@ -3,9 +3,6 @@ using PdH.Data.Components.Repositories;
 using PdH.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PdH.Business
 {
@@ -25,6 +22,10 @@ namespace PdH.Business
             {
                 throw new Exception("Já existe um Produto com esse Código.");
             }
+            product.IsActive = false;
+
+            //TODO: fill created on/by and updated on/by with user data
+
             return _productRepository.Add(product);
         }
 
@@ -74,6 +75,58 @@ namespace PdH.Business
             return _productRepository.Count(code, name, material, color, size, category, active);
         }
 
+        public Product Edit(Product product)
+        {
+            var dbProduct = _productRepository.Get(product.Id);
+            if(dbProduct == null)
+            {
+                throw new Exception("O produto não existe");
+            }
+
+            dbProduct.Code = product.Code;
+            dbProduct.Name = product.Name;
+            dbProduct.Material = product.Material;
+            dbProduct.Color = product.Color;
+            dbProduct.Size = product.Size;
+            dbProduct.Stock = product.Stock;
+            dbProduct.Price = product.Price;
+            dbProduct.Category = product.Category;
+
+            //TODO: fill updated on/by with user data
+            return _productRepository.Edit(product);
+        }
+
+        public Product ChangeStatus(Product product)
+        {
+            var dbProduct = _productRepository.Get(product.Id);
+            if(dbProduct == null)
+            {
+                throw new Exception("O produto não existe");
+            }
+            if(!dbProduct.IsActive == true && dbProduct.Stock <= 0)
+            {
+                throw new Exception("Para activar o produto este tem de ter stock");
+            }
+
+            dbProduct.IsActive = !dbProduct.IsActive;
+
+            //TODO: fill updated on/by with user data
+            return _productRepository.Edit(dbProduct);
+
+        }
+
+        public Product AddStock(Product product)
+        {
+            var dbProduct = _productRepository.Get(product.Id);
+            if (dbProduct == null)
+            {
+                throw new Exception("O produto não existe");
+            }
+
+            dbProduct.Stock += product.Stock;
+            //TODO: fill updated on/by with user data
+            return _productRepository.Edit(dbProduct);
+        }
 
         public void Delete(Product product)
         {

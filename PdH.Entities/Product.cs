@@ -20,6 +20,10 @@ namespace PdH.Entities
 
         public string Category { get; set; }
 
+        public long Stock { get; set; }
+
+        public decimal Price { get; set; }
+
         public bool? IsActive { get; set; }
 
         public virtual DateTime CreatedOn { get; set; }

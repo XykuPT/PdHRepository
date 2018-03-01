@@ -21,6 +21,8 @@ namespace PdH.Data.Context.Mappings
             Property(p => p.Color).HasColumnName("Color").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
             Property(p => p.Size).HasColumnName("Size").HasColumnType("nvarchar").IsOptional().HasMaxLength(20);
             Property(p => p.Category).HasColumnName("Category").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);
+            Property(p => p.Stock).HasColumnName("Stock").HasColumnType("bigint").IsOptional();
+            Property(p => p.Price).HasColumnName("Price").HasColumnType("decimal").IsOptional().HasPrecision(15, 8);
 
             Property(p => p.IsActive).HasColumnName("IsActive").HasColumnType("bit").IsOptional();
             Property(p => p.CreatedOn).HasColumnName("CreatedOn").IsRequired();

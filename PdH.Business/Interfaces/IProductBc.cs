@@ -31,6 +31,12 @@ namespace PdH.Business.Interfaces
             string category,
             bool? active);
 
+        Product Edit(Product product);
+
+        Product ChangeStatus(Product product);
+
+        Product AddStock(Product product);
+
         void Delete(Product product);
 
     }

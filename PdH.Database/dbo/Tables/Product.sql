@@ -5,6 +5,7 @@
     [Material]  NVARCHAR (128)  NULL,
     [Color]     NVARCHAR (128)  NULL,
     [Size]      NVARCHAR (20)   NULL,
+    [Stock]     BIGINT          NULL,
     [Price]     DECIMAL (15, 8) NULL,
     [Category]  NVARCHAR (128)  NULL,
     [IsActive]  BIT             NULL,
@@ -14,6 +15,8 @@
     [UpdatedBy] NVARCHAR (128)  NOT NULL,
     CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PdH.Data.Context.Mappings;
+using System.Data.Entity;
 
 namespace PdH.Data.Components.Repositories
 {
@@ -124,6 +125,19 @@ namespace PdH.Data.Components.Repositories
                     && (category == null || p.Category.Contains(category))
                     && (!active.HasValue || p.IsActive == active));
         }
+
+        public Product Edit(Product product)
+        {
+            var dbContext = new PdHContext();
+            var dbSet = dbContext.Set<Product>();
+
+            dbContext.Entry(product).State = EntityState.Modified;
+            dbContext.SaveChanges();
+
+            return product;
+
+        }
+
 
         /// <summary>
         /// Delete Product
