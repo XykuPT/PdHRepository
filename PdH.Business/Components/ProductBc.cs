@@ -108,6 +108,7 @@ namespace PdH.Business
                 throw new Exception("Para activar o produto este tem de ter stock");
             }
 
+            
             dbProduct.IsActive = !dbProduct.IsActive;
 
             //TODO: fill updated on/by with user data
@@ -115,7 +116,7 @@ namespace PdH.Business
 
         }
 
-        public Product AddStock(Product product)
+        public Product AddStock(Product product, int stock)
         {
             var dbProduct = _productRepository.Get(product.Id);
             if (dbProduct == null)
@@ -123,7 +124,28 @@ namespace PdH.Business
                 throw new Exception("O produto não existe");
             }
 
-            dbProduct.Stock += product.Stock;
+            dbProduct.Stock += stock;
+            //TODO: fill updated on/by with user data
+            return _productRepository.Edit(dbProduct);
+        }
+
+        public Product RemoveStock(Product product,int sellQuantity)
+        {
+            var dbProduct = _productRepository.Get(product.Id);
+            if(dbProduct == null)
+            {
+                throw new Exception("O produto não existe");
+            }
+            if(dbProduct.IsActive == false)
+            {
+                throw new Exception("O produto que deseja não está activo.");
+            }
+            if(dbProduct.Stock == 0 || sellQuantity > dbProduct.Stock)
+            {
+                throw new Exception("Este produto não tem stock suficiente para venda");
+            }
+
+            dbProduct.Stock -= sellQuantity;
             //TODO: fill updated on/by with user data
             return _productRepository.Edit(dbProduct);
         }

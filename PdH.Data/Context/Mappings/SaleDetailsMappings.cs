@@ -15,13 +15,14 @@ namespace PdH.Data.Context.Mappings
                 .IsRequired()
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
+            Property(sd => sd.ProductId).HasColumnName("ProductId").HasColumnType("bigint").IsRequired();
             Property(sd => sd.SalesId).HasColumnName("SalesId").HasColumnType("bigint").IsRequired();
+            Property(sd => sd.ProductQuantity).HasColumnName("ProductQuantity").HasColumnType("bigint").IsRequired();
+            Property(sd => sd.ProductAmount).HasColumnName("ProductAmount").HasColumnType("decimal").HasPrecision(15, 8).IsRequired();
+            Property(sd => sd.SaleDate).HasColumnName("SaleDate").IsRequired();
 
-            Property(sd => sd.Units).HasColumnName("Units").HasColumnType("decimal").HasPrecision(6, 0).IsOptional();
-            Property(sd => sd.UnitPrice).HasColumnName("UnitPrice").HasColumnType("decimal").HasPrecision(15, 8).IsOptional();
-            Property(sd => sd.Amount).HasColumnName("Amount").HasColumnType("decimal").HasPrecision(15, 8).IsOptional();
-
-            HasRequired(sd => sd.Sales).WithMany(s => s.SaleDetails);
+            HasRequired(sd => sd.Product).WithMany(p => p.SaleDetails).HasForeignKey(sd => sd.ProductId);
+            HasRequired(sd => sd.Sales).WithMany(s => s.SaleDetails).HasForeignKey(sd => sd.SalesId);
         }
     }
 }

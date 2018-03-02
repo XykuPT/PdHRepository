@@ -8,9 +8,9 @@ namespace PdH.Entities
         //SCALAR PROPERTIES
         public long Id { get; set; }
 
-        public long ProductId { get; set; }
+        public decimal TotalAmount { get; set; }
 
-        public long SaleId { get; set; }
+        public long TotalUnits { get; set; }
 
         public long CustomerKey { get; set; }
 
@@ -18,12 +18,11 @@ namespace PdH.Entities
 
         //SCALAR PROPERTIES
 
-
-
         //NAVIGATION PROPERTIES
-        public virtual Product Product { get; set; }
 
+        //public virtual SaleDetails SaleDetails { get; set; }
         public virtual ICollection<SaleDetails> SaleDetails { get; set; }
+
         //NAVIGATION PROPERTIES
     }
 }

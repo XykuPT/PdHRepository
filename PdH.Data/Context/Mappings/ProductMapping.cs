@@ -29,8 +29,8 @@ namespace PdH.Data.Context.Mappings
             Property(p => p.CreatedBy).HasColumnName("CreatedBy").IsRequired().HasMaxLength(128);
             Property(p => p.UpdatedOn).HasColumnName("UpdatedOn").IsRequired();
             Property(p => p.UpdatedBy).HasColumnName("UpdatedBy").IsRequired().HasMaxLength(128);
-
-            HasMany(p => p.Sales).WithRequired(s => s.Product);
+            
+            //HasMany(p => p.Sales).WithRequired(s => s.Product);
         }
     }
 }

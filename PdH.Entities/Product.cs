@@ -36,7 +36,7 @@ namespace PdH.Entities
         //SCALAR PROPERTIES
 
         //NAVIGATION PROPERTIES
-        public virtual ICollection<Sales> Sales { get; set; }
+        public virtual ICollection<SaleDetails> SaleDetails { get; set; }
         //NAVIGATION PROPERTIES
     }
 }

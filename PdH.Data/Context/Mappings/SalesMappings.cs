@@ -15,12 +15,12 @@ namespace PdH.Data.Context.Mappings
                 .IsRequired()
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
-            Property(s => s.ProductId).HasColumnName("ProductId").HasColumnType("bigint").IsRequired();
-            Property(s => s.SaleId).HasColumnName("SaleId").HasColumnType("bigint").IsOptional();
-            Property(s => s.CustomerKey).HasColumnName("CustomerKey").HasColumnType("bigint").IsOptional();
-            Property(s => s.SaleDate).HasColumnName("SaleDate").IsOptional();
+            Property(s => s.TotalAmount).HasColumnName("TotalAmount").HasColumnType("decimal").IsRequired().HasPrecision(15, 8);
+            Property(s => s.TotalUnits).HasColumnName("TotalUnits").HasColumnType("bigint").IsRequired();
+            Property(s => s.CustomerKey).HasColumnName("CustomerKey").HasColumnType("bigint").IsRequired();
+            Property(s => s.SaleDate).HasColumnName("SaleDate").IsRequired();
             
-            HasRequired(s => s.Product).WithMany(p => p.Sales).HasForeignKey(s => s.ProductId); 
+            //HasRequired(s => s.Product).WithMany(p => p.Sales).HasForeignKey(s => s.ProductId); 
             HasMany(s => s.SaleDetails).WithRequired(sd => sd.Sales);
 
 

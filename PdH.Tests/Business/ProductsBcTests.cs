@@ -106,7 +106,70 @@ namespace PdH.Tests
             var deletedProduct = _productBc.Get(createdProduct.Id);
 
             Assert.IsTrue(createdProduct.Id != 0);
-            Assert.IsNull(deletedProduct);        }
+            Assert.IsNull(deletedProduct);
+        }
 
+        [TestMethod]
+        public void ProductBc_ChangeStatus()
+        {
+            var productHasStock = _productBc.Get(604);
+            var productNoStock = _productBc.Get(605);
+
+            _productBc.ChangeStatus(productHasStock);
+            Assert.IsTrue(productHasStock.IsActive == true);
+
+            try
+            {
+                _productBc.ChangeStatus(productNoStock);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsNotNull(ex);
+            }
+        }
+
+        [TestMethod]
+        public void ProductBc_AddStock()
+        {
+            var productHasStock = _productBc.Get(604);
+            var stockToAdd = 5;
+
+            var productAfter = _productBc.AddStock(productHasStock, stockToAdd);
+
+            Assert.IsTrue(productAfter.Stock == (productHasStock.Stock + stockToAdd));
+        }
+
+        [TestMethod]
+        public void ProductBc_RemoveStock()
+        {
+            var productHasStock = _productBc.Get(604);
+            var productNoStock = _productBc.Get(605);
+            var sellHasStock = 2;
+            var sellNoStock = 1;
+            var sellOverStock = 50;
+
+            var modifiedProd = _productBc.RemoveStock(productHasStock, sellHasStock);
+            Assert.IsTrue(modifiedProd.Stock == (productHasStock.Stock - sellHasStock));
+
+            try
+            {
+                _productBc.RemoveStock(productNoStock, sellNoStock);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsNotNull(ex);
+            }
+
+            try
+            {
+                _productBc.RemoveStock(productHasStock, sellOverStock);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsNotNull(ex);
+            }
+
+        }
     }
+
 }

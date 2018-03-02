@@ -129,8 +129,7 @@ namespace PdH.Data.Components.Repositories
         public Product Edit(Product product)
         {
             var dbContext = new PdHContext();
-            var dbSet = dbContext.Set<Product>();
-
+            
             dbContext.Entry(product).State = EntityState.Modified;
             dbContext.SaveChanges();
 
