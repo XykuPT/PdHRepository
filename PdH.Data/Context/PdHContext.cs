@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 
 namespace PdH.Data.Context.Mappings
 {
@@ -9,6 +10,11 @@ namespace PdH.Data.Context.Mappings
             Configuration.LazyLoadingEnabled = false;
             Configuration.AutoDetectChangesEnabled = false;
             Database.SetInitializer<PdHContext>(null);
+        }
+
+        public bool Exists<T>(T entity) where T : class
+        {
+            return this.Set<T>().Local.Any(e => e == entity);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

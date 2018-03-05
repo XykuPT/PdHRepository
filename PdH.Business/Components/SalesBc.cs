@@ -9,10 +9,15 @@ namespace PdH.Business
     public class SalesBc : ISalesBc
     {
         private SalesRepository _salesRepository;
+        private SaleDetailsBc _saleDetailsBc;
+        private ProductBc _productBc;
+        
 
         public SalesBc()
         {
             _salesRepository = new SalesRepository();
+            _saleDetailsBc = new SaleDetailsBc();
+            _productBc = new ProductBc();
         }
 
         public Sales Add(Sales sales)
@@ -22,7 +27,19 @@ namespace PdH.Business
             {
                 throw new Exception("Já existe uma venda com este ID.");
             }
-            return _salesRepository.Add(sales);
+            sales.SaleDate = DateTime.Now;
+
+            foreach (var detail in sales.SaleDetails)
+            {
+                detail.SaleDate = sales.SaleDate;
+                detail.Product = _productBc.Get(detail.ProductId);
+                _productBc.RemoveStock(detail.Product, detail.ProductQuantity);
+
+            }
+
+            var saleCreated = _salesRepository.Add(sales);
+
+            return saleCreated;
         }
 
         public Sales Get(long id)
@@ -50,5 +67,9 @@ namespace PdH.Business
             return _salesRepository.Count(productCode, customerKey, saleDate);
         }
 
+        public SaleDetails Add(SaleDetails saleDetails)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
