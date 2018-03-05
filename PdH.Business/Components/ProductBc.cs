@@ -29,7 +29,7 @@ namespace PdH.Business
             return _productRepository.Add(product);
         }
 
-        public Product Get(long id)//isto faz sentido ir duas vezes ao metedo?
+        public Product Get(long id)
         {
             var dbProduct = _productRepository.Get(id);
             if(dbProduct == null)
@@ -116,7 +116,7 @@ namespace PdH.Business
 
         }
 
-        public Product AddStock(Product product, long stock)
+        public Product AddStock(Product product, int stock)
         {
             var dbProduct = _productRepository.Get(product.Id);
             if (dbProduct == null)
@@ -129,7 +129,7 @@ namespace PdH.Business
             return _productRepository.Edit(dbProduct);
         }
 
-        public Product RemoveStock(Product product,long sellQuantity)
+        public Product RemoveStock(Product product,int sellQuantity)
         {
             var dbProduct = _productRepository.Get(product.Id);
             if(dbProduct == null)

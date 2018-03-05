@@ -37,11 +37,7 @@ namespace PdH.Data.Components.Repositories
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<Product>();
 
-            var product = dbSet.FirstOrDefault(p => p.Id == id);
-
-            dbContext.Entry(product).State = EntityState.Detached;
-
-            return product;
+            return dbSet.FirstOrDefault(p => p.Id == id);
         }
         /// <summary>
         /// Search Database for Product with certain Code.
@@ -132,7 +128,6 @@ namespace PdH.Data.Components.Repositories
 
         public Product Edit(Product product)
         {
-            
             var dbContext = new PdHContext();
             
             dbContext.Entry(product).State = EntityState.Modified;

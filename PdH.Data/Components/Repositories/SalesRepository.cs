@@ -60,17 +60,15 @@ namespace PdH.Data.Components.Repositories
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<Sales>();
 
-            //return dbSet.Include(p => p.Product)
-            //    .Where(s =>
-            //    (productCode == null || s.Product.Code.Contains(productCode)) &&
-            //    (customerKey == null || s.CustomerKey == customerKey) && 
-            //    (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)))
-            //    .OrderBy(s => s.Id)
-            //    .Skip((pageNumber - 1) * pageSize)
-            //    .Take(pageSize)
-            //    .ToList();
-
-            throw new NotImplementedException();
+            return dbSet.Include(p => p.Product)
+                .Where(s =>
+                (productCode == null || s.Product.Code.Contains(productCode)) &&
+                (customerKey == null || s.CustomerKey == customerKey) && 
+                (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)))
+                .OrderBy(s => s.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
         }
 
         /// <summary>
@@ -85,12 +83,10 @@ namespace PdH.Data.Components.Repositories
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<Sales>();
 
-            //return dbSet.LongCount(s =>
-            //    (productCode == null || s.Product.Code.Contains(productCode)) &&
-            //    (customerKey == null || s.CustomerKey == customerKey) &&
-            //    (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)));
-
-            throw new NotImplementedException();
+            return dbSet.LongCount(s =>
+                (productCode == null || s.Product.Code.Contains(productCode)) &&
+                (customerKey == null || s.CustomerKey == customerKey) &&
+                (!saleDate.HasValue || DbFunctions.TruncateTime(s.SaleDate) == DbFunctions.TruncateTime(saleDate)));
         }
     }
 }

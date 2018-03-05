@@ -10,7 +10,7 @@ namespace PdH.Entities
         
         public long ProductId { get; set; }
 
-        public long SaleId { get; set; }
+        public long SalesId { get; set; }
 
         public long ProductQuantity { get; set; }
 

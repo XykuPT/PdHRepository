@@ -35,9 +35,9 @@ namespace PdH.Business.Interfaces
 
         Product ChangeStatus(Product product);
 
-        Product AddStock(Product product, long stock);
+        Product AddStock(Product product, int stock);
 
-        Product RemoveStock(Product product, long sellQuantity);
+        Product RemoveStock(Product product, int sellQuantity);
 
         void Delete(Product product);
 

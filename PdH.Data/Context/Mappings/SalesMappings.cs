@@ -21,7 +21,7 @@ namespace PdH.Data.Context.Mappings
             Property(s => s.SaleDate).HasColumnName("SaleDate").IsRequired();
             
             //HasRequired(s => s.Product).WithMany(p => p.Sales).HasForeignKey(s => s.ProductId); 
-            //HasMany(s => s.SaleDetails).WithRequired(sd => sd.Sales);
+            HasMany(s => s.SaleDetails).WithRequired(sd => sd.Sales);
 
 
         }
