@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\ProductsBcTests.cs" />
+    <Compile Include="Business\SaleDetailsBcTests.cs" />
     <Compile Include="Business\SalesBcTests.cs" />
     <Compile Include="TestUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
