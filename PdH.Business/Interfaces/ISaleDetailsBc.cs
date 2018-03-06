@@ -21,6 +21,5 @@ namespace PdH.Business.Interfaces
 
         long Count(long SaleId, DateTime? saleDate);
 
-
         }
 }

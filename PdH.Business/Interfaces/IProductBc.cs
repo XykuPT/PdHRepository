@@ -40,6 +40,5 @@ namespace PdH.Business.Interfaces
         Product RemoveStock(long id, long sellQuantity);
 
         void Delete(Product product);
-
     }
 }

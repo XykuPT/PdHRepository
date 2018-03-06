@@ -16,6 +16,7 @@ namespace PdH.Business
             _saleDetailsRepository = new SaleDetailsRepository();
 
         }
+
         public SaleDetails Add(SaleDetails saleDetails)
         {
 
@@ -30,7 +31,6 @@ namespace PdH.Business
             return saleDetails;
         }
 
-        //TODO: GET'S
         public SaleDetails Get(long id)
         {
             var dbSaleDetail = _saleDetailsRepository.Get(id);
@@ -49,7 +49,6 @@ namespace PdH.Business
         {
             return _saleDetailsRepository.Search(pageNumber, pageSize, SaleId, saleDate);
         }
-
 
         public long Count(long SaleId, DateTime? saleDate)
         {

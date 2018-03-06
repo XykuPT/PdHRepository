@@ -16,8 +16,6 @@ namespace PdH.Business.Interfaces
             long? customerKey = null,
             DateTime? saleDate = null);
 
-        long Count(
-            long? customerKey,
-            DateTime? saleDate);
+        long Count(long? customerKey, DateTime? saleDate);
     }
 }
