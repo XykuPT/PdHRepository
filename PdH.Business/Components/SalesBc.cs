@@ -22,22 +22,20 @@ namespace PdH.Business
 
         public Sales Add(Sales sales)
         {
-            var dbSales = _salesRepository.Get(sales.Id);
-            if(dbSales != null)
-            {
-                throw new Exception("Já existe uma venda com este ID.");
-            }
+
             sales.SaleDate = DateTime.Now;
 
             foreach (var detail in sales.SaleDetails)
             {
                 detail.SaleDate = sales.SaleDate;
-                detail.Product = _productBc.Get(detail.ProductId);
-                _productBc.RemoveStock(detail.Product, detail.ProductQuantity);
+                //detail.Product = _productBc.Get(detail.ProductId);
+                _productBc.RemoveStock(detail.ProductId, detail.ProductQuantity);
 
             }
 
-            var saleCreated = _salesRepository.Add(sales);
+            _salesRepository.Add(sales);
+
+            var saleCreated = _salesRepository.Get(sales.Id);
 
             return saleCreated;
         }

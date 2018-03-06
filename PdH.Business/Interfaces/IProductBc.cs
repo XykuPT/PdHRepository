@@ -37,7 +37,7 @@ namespace PdH.Business.Interfaces
 
         Product AddStock(Product product, long stock);
 
-        Product RemoveStock(Product product, long sellQuantity);
+        Product RemoveStock(long id, long sellQuantity);
 
         void Delete(Product product);
 

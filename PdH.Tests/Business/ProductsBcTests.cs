@@ -148,12 +148,12 @@ namespace PdH.Tests
             var sellNoStock = 1;
             var sellOverStock = 50;
 
-            var modifiedProd = _productBc.RemoveStock(productHasStock, sellHasStock);
+            var modifiedProd = _productBc.RemoveStock(productHasStock.Id, sellHasStock);
             Assert.IsTrue(modifiedProd.Stock == (productHasStock.Stock - sellHasStock));
 
             try
             {
-                _productBc.RemoveStock(productNoStock, sellNoStock);
+                _productBc.RemoveStock(productNoStock.Id, sellNoStock);
             }
             catch (Exception ex)
             {
@@ -162,7 +162,7 @@ namespace PdH.Tests
 
             try
             {
-                _productBc.RemoveStock(productHasStock, sellOverStock);
+                _productBc.RemoveStock(productHasStock.Id, sellOverStock);
             }
             catch (Exception ex)
             {

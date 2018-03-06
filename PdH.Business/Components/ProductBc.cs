@@ -129,9 +129,9 @@ namespace PdH.Business
             return _productRepository.Edit(dbProduct);
         }
 
-        public Product RemoveStock(Product product,long sellQuantity)
+        public Product RemoveStock(long id,long sellQuantity)//TODO: passar a receber ID
         {
-            var dbProduct = _productRepository.Get(product.Id);
+            var dbProduct = _productRepository.Get(id);
             if(dbProduct == null)
             {
                 throw new Exception("O produto não existe");
