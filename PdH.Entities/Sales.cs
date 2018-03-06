@@ -12,6 +12,14 @@ namespace PdH.Entities
 
         public long TotalUnits { get; set; }
 
+        public string DeliveryAddress { get; set; }
+
+        public string DeliveryCod_Postal { get; set; }
+
+        public string DeliveryLocation { get; set; }
+
+        public string DeliveryStatus { get; set; }
+
         public long CustomerKey { get; set; }
 
         public virtual DateTime SaleDate { get; set; }
