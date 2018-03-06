@@ -13,12 +13,10 @@ namespace PdH.Business.Interfaces
         IEnumerable<Sales> Search(
             int pageNumber,
             int pageSize,
-            string productCode = null,
             long? customerKey = null,
             DateTime? saleDate = null);
 
         long Count(
-            string productCode,
             long? customerKey,
             DateTime? saleDate);
     }

@@ -53,21 +53,15 @@ namespace PdH.Business
         public IEnumerable<Sales> Search(
             int pageNumber, 
             int pageSize, 
-            string productCode = null, 
             long? customerKey = null, 
             DateTime? saleDate = null)
         {
-            return _salesRepository.Search(pageNumber, pageSize, productCode, customerKey, saleDate);
+            return _salesRepository.Search(pageNumber, pageSize, customerKey, saleDate);
         }
 
-        public long Count(string productCode, long? customerKey, DateTime? saleDate)
+        public long Count(long? customerKey, DateTime? saleDate)
         {
-            return _salesRepository.Count(productCode, customerKey, saleDate);
-        }
-
-        public SaleDetails Add(SaleDetails saleDetails)
-        {
-            throw new NotImplementedException();
+            return _salesRepository.Count(customerKey, saleDate);
         }
     }
 }

@@ -74,16 +74,6 @@ namespace PdH.Tests
 
         }
 
-        //TODO: not implemented
-        //[TestMethod]
-        //public void ProductBc1_Search()
-        //{
-        //    var searchedProduct = _productBc.AdvSearch(1, int.MaxValue, "cenas", null, null, null);
-
-        //    Assert.IsTrue(searchedProduct.Count() == 1);
-
-        //}
-
         [TestMethod]
         public void ProductBc_Delete()
         {

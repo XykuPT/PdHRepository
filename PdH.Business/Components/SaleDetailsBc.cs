@@ -28,5 +28,8 @@ namespace PdH.Business
 
             return saleDetails;
         }
+
+        //TODO: GET'S
+
     }
 }
