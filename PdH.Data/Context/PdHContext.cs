@@ -12,11 +12,6 @@ namespace PdH.Data.Context.Mappings
             Database.SetInitializer<PdHContext>(null);
         }
 
-        public bool Exists<T>(T entity) where T : class
-        {
-            return this.Set<T>().Local.Any(e => e == entity);
-        }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

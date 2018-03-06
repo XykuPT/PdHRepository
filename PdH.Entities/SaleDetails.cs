@@ -20,7 +20,10 @@ namespace PdH.Entities
         //SCALAR PROPERTIES
 
         //NAVIGATION PROPERTIES
+
         public virtual Product Product { get; set; }
+        //public virtual ICollection<Product> Product { get; set; }
+
         public virtual Sales Sales { get; set; }
         //public virtual ICollection<Sales> Sales { get; set; }
         //NAVIGATION PROPERTIES
