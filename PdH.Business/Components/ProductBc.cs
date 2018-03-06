@@ -96,9 +96,9 @@ namespace PdH.Business
             return _productRepository.Edit(product);
         }
 
-        public Product ChangeStatus(Product product)
+        public Product ChangeStatus(long id)
         {
-            var dbProduct = _productRepository.Get(product.Id);
+            var dbProduct = _productRepository.Get(id);
             if(dbProduct == null)
             {
                 throw new Exception("O produto não existe");
@@ -116,15 +116,23 @@ namespace PdH.Business
 
         }
 
-        public Product AddStock(Product product, long stock)
+        public Product AddStock(long id, long stock)
         {
-            var dbProduct = _productRepository.Get(product.Id);
+            var dbProduct = _productRepository.Get(id);
             if (dbProduct == null)
             {
                 throw new Exception("O produto não existe");
             }
 
             dbProduct.Stock += stock;
+
+            //if (dbProduct.Stock > 0 && dbProduct.IsActive == false)
+            //{
+            //    var productChanged = ChangeStatus(dbProduct.Id);
+            //    dbProduct.IsActive = productChanged.IsActive;
+            //}
+
+
             //TODO: fill updated on/by with user data
             return _productRepository.Edit(dbProduct);
         }
@@ -146,6 +154,11 @@ namespace PdH.Business
             }
 
             dbProduct.Stock -= sellQuantity;
+            if(dbProduct.Stock == 0 && dbProduct.IsActive == true)
+            {
+                var productChanged = ChangeStatus(dbProduct.Id);
+                dbProduct.IsActive = productChanged.IsActive;
+            }
             //TODO: fill updated on/by with user data
             return _productRepository.Edit(dbProduct);
         }

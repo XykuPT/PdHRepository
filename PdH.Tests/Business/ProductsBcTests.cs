@@ -115,12 +115,12 @@ namespace PdH.Tests
             var productHasStock = _productBc.Get(604);
             var productNoStock = _productBc.Get(605);
 
-            _productBc.ChangeStatus(productHasStock);
+            _productBc.ChangeStatus(productHasStock.Id);
             Assert.IsTrue(productHasStock.IsActive == true);
 
             try
             {
-                _productBc.ChangeStatus(productNoStock);
+                _productBc.ChangeStatus(productNoStock.Id);
             }
             catch (Exception ex)
             {
@@ -134,7 +134,7 @@ namespace PdH.Tests
             var productHasStock = _productBc.Get(604);
             var stockToAdd = 5;
 
-            var productAfter = _productBc.AddStock(productHasStock, stockToAdd);
+            var productAfter = _productBc.AddStock(productHasStock.Id, stockToAdd);
 
             Assert.IsTrue(productAfter.Stock == (productHasStock.Stock + stockToAdd));
         }

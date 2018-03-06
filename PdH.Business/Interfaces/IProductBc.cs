@@ -33,9 +33,9 @@ namespace PdH.Business.Interfaces
 
         Product Edit(Product product);
 
-        Product ChangeStatus(Product product);
+        Product ChangeStatus(long id);
 
-        Product AddStock(Product product, long stock);
+        Product AddStock(long id, long stock);
 
         Product RemoveStock(long id, long sellQuantity);
 
