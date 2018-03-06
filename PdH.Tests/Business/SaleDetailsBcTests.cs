@@ -16,17 +16,5 @@ namespace PdH.Tests.Business
         {
             _SaleDetailsBc = new SaleDetailsBc();
         }
-
-        [TestMethod]
-        public void SaleDetailsBc_Add()
-        {
-           
-
-
-
-
-
-
-        }
     }
 }

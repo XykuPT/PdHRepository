@@ -20,7 +20,7 @@ namespace PdH.Data.Components.Repositories
             return saleDetails;
         }
 
-        public object Get(long id)
+        public SaleDetails Get(long id)
         {
             var dbContext = new PdHContext();
             var dbSet = dbContext.Set<SaleDetails>();

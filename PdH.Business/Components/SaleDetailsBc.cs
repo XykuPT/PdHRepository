@@ -2,6 +2,7 @@
 using PdH.Data.Components.Repositories;
 using PdH.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace PdH.Business
 {
@@ -30,6 +31,30 @@ namespace PdH.Business
         }
 
         //TODO: GET'S
+        public SaleDetails Get(long id)
+        {
+            var dbSaleDetail = _saleDetailsRepository.Get(id);
+            if (dbSaleDetail == null)
+            {
+                throw new Exception("Não existe venda com esse ID.");
+            }
+            return _saleDetailsRepository.Get(id);
+        }
+
+        public IEnumerable<SaleDetails> Search(
+            int pageNumber,
+            int pageSize, 
+            long SaleId, 
+            DateTime? saleDate = null)
+        {
+            return _saleDetailsRepository.Search(pageNumber, pageSize, SaleId, saleDate);
+        }
+
+
+        public long Count(long SaleId, DateTime? saleDate)
+        {
+            return _saleDetailsRepository.Count(SaleId, saleDate);
+        }
 
     }
 }
