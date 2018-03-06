@@ -1,7 +1,7 @@
 USE [PdH]
 GO
 
-/****** Object:  Table [dbo].[Product]    Script Date: 01/03/2018 09:46:14 ******/
+/****** Object:  Table [dbo].[Product]    Script Date: 06/03/2018 09:43:41 ******/
 SET ANSI_NULLS ON
 GO
 
