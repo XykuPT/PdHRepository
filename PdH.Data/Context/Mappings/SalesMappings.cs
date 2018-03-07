@@ -16,7 +16,7 @@ namespace PdH.Data.Context.Mappings
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             Property(s => s.TotalAmount).HasColumnName("TotalAmount").HasColumnType("decimal").IsRequired().HasPrecision(15, 8);
-            Property(s => s.TotalUnits).HasColumnName("TotalUnits").HasColumnType("bigint").IsRequired();
+            Property(s => s.TotalQuantity).HasColumnName("TotalQuantity").HasColumnType("bigint").IsRequired();
             Property(s => s.DeliveryAddress).HasColumnName("DeliveryAddress").HasColumnType("nvarchar").IsOptional().HasMaxLength(512);
             Property(s => s.DeliveryCod_Postal).HasColumnName("DeliveryCod_Postal").HasColumnType("nvarchar").IsOptional().HasMaxLength(8);
             Property(s => s.DeliveryLocation).HasColumnName("DeliveryLocation").HasColumnType("nvarchar").IsOptional().HasMaxLength(128);

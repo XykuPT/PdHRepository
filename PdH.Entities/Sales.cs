@@ -10,7 +10,7 @@ namespace PdH.Entities
 
         public decimal TotalAmount { get; set; }
 
-        public long TotalUnits { get; set; }
+        public long TotalQuantity { get; set; }
 
         public string DeliveryAddress { get; set; }
 

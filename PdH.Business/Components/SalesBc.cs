@@ -31,6 +31,9 @@ namespace PdH.Business
                 //detail.Product = _productBc.Get(detail.ProductId);
                 _productBc.RemoveStock(detail.ProductId, detail.ProductQuantity);
 
+                sales.TotalQuantity += detail.ProductQuantity;
+                sales.TotalAmount += detail.ProductAmount;
+
             }
 
             _salesRepository.Add(sales);

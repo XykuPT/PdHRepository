@@ -30,6 +30,8 @@ namespace PdH.Tests
                     Code = $"RandomCode{TestUtils.GetRandomGuidAsString(5)}",
                     Color = $"RandomColor{TestUtils.GetRandomGuidAsString(5)}",
                     Size = $"RandomSize{TestUtils.GetRandomGuidAsString(5)}",
+                    Stock = TestUtils.GetRandomNumeric(1, 10),
+                    Price = TestUtils.GetRandomDecimal(),
                     CreatedBy = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
                     CreatedOn = DateTime.Now,
 

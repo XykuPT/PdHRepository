@@ -10,38 +10,54 @@ namespace PdH.Tests.Business
     public class SalesBcTests
     {
         private ISalesBc _salesBc;
+        private ISaleDetailsBc _saleDetailsBc;
+        private IProductBc _productBc;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _salesBc = new SalesBc();
+            _saleDetailsBc = new SaleDetailsBc();
+            _productBc = new ProductBc();
         }
 
         [TestMethod]
         public void Sales_Add()
         {
+            var newProduct = new Product
+            {
+
+                Name = $"SalesAddRandomName{TestUtils.GetRandomGuidAsString(5)}",
+                Code = $"RandomCode{TestUtils.GetRandomGuidAsString(5)}",
+                Color = $"RandomColor{TestUtils.GetRandomGuidAsString(5)}",
+                Size = $"RandomSize{TestUtils.GetRandomGuidAsString(5)}",
+                CreatedBy = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
+                CreatedOn = DateTime.Now,
+                Stock =  TestUtils.GetRandomNumeric(1, 10),
+                Price = TestUtils.GetRandomDecimal(5,50),
+                IsActive = true,
+
+            };
+            newProduct.UpdatedBy = newProduct.CreatedBy;
+            newProduct.UpdatedOn = newProduct.CreatedOn;
+            var product = _productBc.Add(newProduct);
+
             var newSale = new Sales
             {
-                TotalAmount = 60,
-                TotalUnits = 3,
-                CustomerKey = 1
+
+                CustomerKey = TestUtils.GetRandomNumeric(1,500)
 
             };
             var saleDetails = new[]
             {
                 new SaleDetails{
-                    ProductId = 604,
-                    ProductAmount = 50,
-                    ProductQuantity = 2,
-                },
-                new SaleDetails
-                {
-                    ProductId = 605,
-                    ProductAmount = 10,
+                    ProductId = product.Id,
+                    ProductAmount = product.Price,
                     ProductQuantity = 1,
                 }
             };
             newSale.SaleDetails = saleDetails;
+
             var salesCreated = _salesBc.Add(newSale);
 
             Assert.IsTrue(newSale.Id != 0);
@@ -55,20 +71,36 @@ namespace PdH.Tests.Business
         [TestMethod]
         public void Sales_Get()
         {
-            var newSale = new Sales
+            var newProduct = new Product
             {
-                TotalAmount = 25,
-                TotalUnits = 1,
-                CustomerKey = 1
+
+                Name = $"SalesAddRandomName{TestUtils.GetRandomGuidAsString(5)}",
+                Code = $"RandomCode{TestUtils.GetRandomGuidAsString(5)}",
+                Color = $"RandomColor{TestUtils.GetRandomGuidAsString(5)}",
+                Size = $"RandomSize{TestUtils.GetRandomGuidAsString(5)}",
+                CreatedBy = $"RandomName{TestUtils.GetRandomGuidAsString(5)}",
+                CreatedOn = DateTime.Now,
+                Stock = TestUtils.GetRandomNumeric(1, 10),
+                Price = TestUtils.GetRandomDecimal(5, 50),
+                IsActive = true,
 
             };
-            var saleDetails = new[] 
+            newProduct.UpdatedBy = newProduct.CreatedBy;
+            newProduct.UpdatedOn = newProduct.CreatedOn;
+            var product = _productBc.Add(newProduct);
+
+            var newSale = new Sales
             {
-                new SaleDetails
-                {
-                    ProductId = 604,
-                    ProductAmount = 25,
-                    ProductQuantity = 1
+
+                CustomerKey = TestUtils.GetRandomNumeric(1, 500)
+
+            };
+            var saleDetails = new[]
+            {
+                new SaleDetails{
+                    ProductId = product.Id,
+                    ProductAmount = product.Price,
+                    ProductQuantity = 1,
                 }
             };
             newSale.SaleDetails = saleDetails;
@@ -78,7 +110,7 @@ namespace PdH.Tests.Business
 
             Assert.IsTrue(searchedProduct.Id != 0);
             Assert.AreEqual(searchedProduct.TotalAmount, createdProduct.TotalAmount);
-            Assert.AreEqual(searchedProduct.TotalUnits, createdProduct.TotalUnits);
+            Assert.AreEqual(searchedProduct.TotalQuantity, createdProduct.TotalQuantity);
             Assert.AreEqual(searchedProduct.SaleDate, createdProduct.SaleDate);
             Assert.AreEqual(searchedProduct.SaleDetails, createdProduct.SaleDetails);
 

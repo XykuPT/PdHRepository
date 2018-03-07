@@ -22,7 +22,7 @@ namespace PdH.Business
             {
                 throw new Exception("Já existe um Produto com esse Código.");
             }
-            product.IsActive = false;
+            //product.IsActive = false; //porque estava isto aqui ?
 
             //TODO: fill created on/by and updated on/by with user data
 

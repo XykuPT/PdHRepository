@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[Sales](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[TotalAmount] [decimal](15, 8) NOT NULL,
-	[TotalUnits] [bigint] NOT NULL,
+	[TotalQuantity] [bigint] NOT NULL,
 	[CustomerKey] [bigint] NOT NULL,
 	[SaleDate] [datetime2](7) NOT NULL,
 	[DeliveryAddress] [nvarchar](512) NULL,

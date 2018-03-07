@@ -28,5 +28,10 @@ namespace PdH.Tests
         {
             return RandomGenerator.Next(min, max);
         }
+        public static decimal GetRandomDecimal(double min = 1, double max = 5000)
+        {
+            var decimalNumb = (decimal)(RandomGenerator.NextDouble() * (max - min) + min);
+            return decimalNumb;
+        }
     }
 }
